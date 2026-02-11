@@ -7,14 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --deep: #0a0a1a;
-            --navy: #1a1a2e;
-            --blue: #0f3460;
-            --accent: #e67e22;
-            --gold: #f39c12;
-            --light: #f4f6f9;
-            --text: #2c3e50;
-            --muted: #7f8c8d;
+            --deep: #2f3542;
+            --navy: #1a3a6d;
+            --blue: #324877;
+            --accent: #f97f51;
+            --gold: #f97f51;
+            --light: #f4f7f9;
+            --text: #2f3542;
+            --muted: #4c6089;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,9 +32,9 @@
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: 
-                radial-gradient(ellipse at 20% 50%, rgba(15,52,96,0.4) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(230,126,34,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(26,26,46,0.8) 0%, transparent 60%);
+                radial-gradient(ellipse at 20% 50%, rgba(26,58,109,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(0,200,83,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(47,53,66,0.8) 0%, transparent 60%);
             z-index: 0;
         }
         
@@ -49,16 +49,16 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(243,156,18,0.3);
+            background: rgba(0,200,83,0.25);
             border-radius: 50%;
             animation: float 8s ease-in-out infinite;
         }
         
         .dot:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
         .dot:nth-child(2) { left: 30%; top: 60%; animation-delay: 1s; animation-duration: 10s; }
-        .dot:nth-child(3) { left: 50%; top: 30%; animation-delay: 2s; animation-duration: 7s; }
+        .dot:nth-child(3) { left: 50%; top: 30%; animation-delay: 2s; animation-duration: 7s; background: rgba(249,127,81,0.2); }
         .dot:nth-child(4) { left: 70%; top: 70%; animation-delay: 3s; }
-        .dot:nth-child(5) { left: 90%; top: 40%; animation-delay: 4s; animation-duration: 9s; }
+        .dot:nth-child(5) { left: 90%; top: 40%; animation-delay: 4s; animation-duration: 9s; background: rgba(249,127,81,0.2); }
         .dot:nth-child(6) { left: 20%; top: 80%; animation-delay: 5s; animation-duration: 11s; }
         .dot:nth-child(7) { left: 60%; top: 10%; animation-delay: 1.5s; }
         .dot:nth-child(8) { left: 80%; top: 90%; animation-delay: 2.5s; animation-duration: 12s; }
@@ -98,15 +98,15 @@
             margin-bottom: 4px;
         }
         
-        .logo span { color: var(--accent); }
+        .logo span { color: #00c853; }
         
         .badge {
             display: inline-block;
             padding: 4px 14px;
-            background: rgba(230,126,34,0.15);
-            border: 1px solid rgba(230,126,34,0.3);
+            background: rgba(0,200,83,0.1);
+            border: 1px solid rgba(0,200,83,0.25);
             border-radius: 20px;
-            color: var(--gold);
+            color: #00c853;
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 2px;
@@ -124,14 +124,11 @@
         
         .title em {
             font-style: normal;
-            background: linear-gradient(135deg, var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #f97f51;
         }
         
         .subtitle {
-            color: #8899aa;
+            color: #7a8fb5;
             font-size: 14px;
             margin-top: 10px;
             line-height: 1.5;
@@ -142,10 +139,10 @@
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: rgba(39,174,96,0.12);
-            border: 1px solid rgba(39,174,96,0.3);
+            background: rgba(0,200,83,0.08);
+            border: 1px solid rgba(0,200,83,0.2);
             border-radius: 8px;
-            color: #27ae60;
+            color: #00c853;
             font-size: 12px;
             font-weight: 600;
             margin-top: 16px;
@@ -153,9 +150,9 @@
         
         /* Form */
         .form-card {
-            background: rgba(255,255,255,0.04);
+            background: rgba(26,58,109,0.12);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(26,58,109,0.25);
             border-radius: 20px;
             padding: 28px 24px;
             animation: fadeUp 0.8s ease-out 0.2s both;
@@ -182,14 +179,14 @@
         }
         
         .step-dot.active {
-            background: var(--accent);
-            box-shadow: 0 0 12px rgba(230,126,34,0.5);
+            background: #f97f51;
+            box-shadow: 0 0 12px rgba(249,127,81,0.5);
             width: 24px;
             border-radius: 4px;
         }
         
         .step-dot.completed {
-            background: #27ae60;
+            background: #00c853;
         }
         
         .form-step {
@@ -207,7 +204,7 @@
         .step-number {
             font-family: 'Space Mono', monospace;
             font-size: 11px;
-            color: var(--accent);
+            color: #f97f51;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 8px;
@@ -227,7 +224,7 @@
             display: block;
             font-size: 12px;
             font-weight: 600;
-            color: #8899aa;
+            color: #7a8fb5;
             margin-bottom: 6px;
             letter-spacing: 0.5px;
         }
@@ -238,8 +235,8 @@
         select {
             width: 100%;
             padding: 14px 16px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(26,58,109,0.15);
+            border: 1px solid rgba(26,58,109,0.3);
             border-radius: 12px;
             color: white;
             font-family: 'DM Sans', sans-serif;
@@ -253,21 +250,21 @@
         }
         
         input:focus, textarea:focus, select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(230,126,34,0.15);
-            background: rgba(255,255,255,0.08);
+            border-color: #00c853;
+            box-shadow: 0 0 0 3px rgba(0,200,83,0.12);
+            background: rgba(26,58,109,0.2);
         }
         
         select {
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238899aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a8fb5' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 14px center;
         }
         
         select option {
-            background: var(--navy);
+            background: #2f3542;
             color: white;
         }
         
@@ -285,8 +282,8 @@
         
         .option-card {
             padding: 14px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(26,58,109,0.1);
+            border: 1px solid rgba(26,58,109,0.25);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -294,14 +291,14 @@
         }
         
         .option-card:hover {
-            border-color: rgba(230,126,34,0.4);
-            background: rgba(230,126,34,0.08);
+            border-color: rgba(0,200,83,0.3);
+            background: rgba(0,200,83,0.05);
         }
         
         .option-card.selected {
-            border-color: var(--accent);
-            background: rgba(230,126,34,0.12);
-            box-shadow: 0 0 0 2px rgba(230,126,34,0.2);
+            border-color: #00c853;
+            background: rgba(0,200,83,0.1);
+            box-shadow: 0 0 0 2px rgba(0,200,83,0.15);
         }
         
         .option-card .icon {
@@ -336,21 +333,21 @@
         
         .btn-back {
             background: rgba(255,255,255,0.06);
-            color: #8899aa;
+            color: #7a8fb5;
             flex: 0.4;
         }
         
         .btn-back:hover { background: rgba(255,255,255,0.1); }
         
         .btn-next {
-            background: linear-gradient(135deg, var(--accent), var(--gold));
+            background: #00c853;
             color: white;
             letter-spacing: 0.5px;
         }
         
         .btn-next:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(230,126,34,0.35);
+            box-shadow: 0 6px 20px rgba(0,200,83,0.3);
         }
         
         .btn-next:disabled {
@@ -377,7 +374,7 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            background: #00c853;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -387,8 +384,8 @@
         }
         
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(39,174,96,0.3); }
-            50% { box-shadow: 0 0 0 15px rgba(39,174,96,0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,83,0.3); }
+            50% { box-shadow: 0 0 0 15px rgba(0,200,83,0); }
         }
         
         .success-title {
@@ -399,7 +396,7 @@
         }
         
         .success-text {
-            color: #8899aa;
+            color: #7a8fb5;
             font-size: 14px;
             line-height: 1.6;
         }
@@ -416,7 +413,7 @@
             height: 50px;
             margin: 0 auto 24px;
             border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: var(--accent);
+            border-top-color: #00c853;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -430,7 +427,7 @@
         }
         
         .loading-sub {
-            color: #8899aa;
+            color: #7a8fb5;
             font-size: 13px;
             margin-top: 6px;
         }
@@ -635,9 +632,9 @@
                 Revisa tu correo electrónico en los próximos minutos.<br>
                 Recibirás un análisis personalizado con recomendaciones específicas para tu empresa.
             </div>
-            <div style="margin-top:24px;padding:16px;background:rgba(230,126,34,0.1);border-radius:12px;border:1px solid rgba(230,126,34,0.2);">
-                <p style="color:var(--accent);font-weight:700;font-size:14px;">📅 ¿Quieres profundizar?</p>
-                <p style="color:#8899aa;font-size:13px;margin-top:4px;">Pasa a nuestro stand para platicar sobre cómo automatizar tu operación</p>
+            <div style="margin-top:24px;padding:16px;background:rgba(26,58,109,0.15);border-radius:12px;border:1px solid rgba(26,58,109,0.25);">
+                <p style="color:#f97f51;font-weight:700;font-size:14px;">📅 ¿Quieres profundizar?</p>
+                <p style="color:#7a8fb5;font-size:13px;margin-top:4px;">Pasa a nuestro stand para platicar sobre cómo automatizar tu operación</p>
             </div>
         </div>
         
@@ -664,7 +661,6 @@
         }
         
         function nextStep() {
-            // Validate current step
             if (!validateStep(currentStep)) return;
             
             if (currentStep < totalSteps - 1) {
@@ -717,7 +713,7 @@
         function shakeForm() {
             const card = document.getElementById('formCard');
             card.style.animation = 'none';
-            card.offsetHeight; // trigger reflow
+            card.offsetHeight;
             card.style.animation = 'shake 0.5s ease-out';
         }
         
@@ -740,7 +736,6 @@
         async function submitForm() {
             if (!validateStep(3)) return;
             
-            // ⚠️ CAMBIA ESTA URL por tu webhook de n8n
             const WEBHOOK_URL = 'https://n8n.operasimple.com/webhook/diagnostico-express';
             
             const payload = {
@@ -754,7 +749,6 @@
                 dolor_principal: document.getElementById('dolor').value.trim() || 'No especificado'
             };
             
-            // Show loading
             document.getElementById('formCard').style.display = 'none';
             document.getElementById('loadingScreen').style.display = 'block';
             
@@ -765,14 +759,12 @@
                     body: JSON.stringify(payload)
                 });
                 
-                // Show success after a moment
                 setTimeout(() => {
                     document.getElementById('loadingScreen').style.display = 'none';
                     document.getElementById('successScreen').style.display = 'block';
                 }, 2000);
                 
             } catch (error) {
-                // Even on error, show success (webhook might be async)
                 setTimeout(() => {
                     document.getElementById('loadingScreen').style.display = 'none';
                     document.getElementById('successScreen').style.display = 'block';
@@ -780,7 +772,6 @@
             }
         }
         
-        // Add shake animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
