@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
         
-        /* Animated background */
         .bg-pattern {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -77,7 +76,6 @@
             min-height: 100vh;
         }
         
-        /* Header */
         .header {
             text-align: center;
             padding: 20px 0 32px;
@@ -148,7 +146,6 @@
             margin-top: 16px;
         }
         
-        /* Form */
         .form-card {
             background: rgba(26,58,109,0.12);
             backdrop-filter: blur(20px);
@@ -231,6 +228,7 @@
         
         input[type="text"],
         input[type="email"],
+        input[type="tel"],
         textarea,
         select {
             width: 100%;
@@ -273,7 +271,6 @@
             min-height: 80px;
         }
         
-        /* Option cards */
         .option-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -312,7 +309,6 @@
             color: white;
         }
         
-        /* Buttons */
         .btn-row {
             display: flex;
             gap: 10px;
@@ -357,7 +353,6 @@
             box-shadow: none;
         }
         
-        /* Success state */
         .success-screen {
             display: none;
             text-align: center;
@@ -401,7 +396,6 @@
             line-height: 1.6;
         }
         
-        /* Loading */
         .loading-screen {
             display: none;
             text-align: center;
@@ -432,13 +426,22 @@
             margin-top: 6px;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 24px 0;
             color: rgba(255,255,255,0.2);
             font-size: 11px;
             animation: fadeUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Giro otro - campo custom */
+        .giro-otro-container {
+            margin-top: 10px;
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .giro-otro-container.visible {
+            display: block;
         }
     </style>
 </head>
@@ -479,6 +482,10 @@
                     <input type="email" id="email" placeholder="juan@tuempresa.com" required>
                 </div>
                 <div class="input-group">
+                    <label>Tu teléfono</label>
+                    <input type="tel" id="telefono" placeholder="Ej: 55 1234 5678">
+                </div>
+                <div class="input-group">
                     <label>Nombre de tu empresa</label>
                     <input type="text" id="empresa" placeholder="Ej: Distribuidora García" required>
                 </div>
@@ -493,7 +500,7 @@
                 <div class="question">¿A qué se dedica tu empresa?</div>
                 <div class="input-group">
                     <label>Giro o industria</label>
-                    <select id="giro">
+                    <select id="giro" onchange="handleGiroChange()">
                         <option value="">Selecciona...</option>
                         <option value="Comercio / Retail">🛒 Comercio / Retail</option>
                         <option value="Manufactura">🏭 Manufactura</option>
@@ -506,6 +513,10 @@
                         <option value="Logística / Transporte">🚛 Logística / Transporte</option>
                         <option value="Otro">📌 Otro</option>
                     </select>
+                    <div class="giro-otro-container" id="giroOtroContainer">
+                        <label>Especifica tu giro</label>
+                        <input type="text" id="giroOtro" placeholder="Ej: Agencia de marketing, Despacho contable...">
+                    </div>
                 </div>
                 <div class="input-group">
                     <label>¿Cuántos empleados tienen?</label>
@@ -534,7 +545,7 @@
                 </div>
             </div>
             
-            <!-- Step 3: Dolor principal -->
+            <!-- Step 3: Procesos manuales -->
             <div class="form-step" data-step="2">
                 <div class="step-number">Paso 3 de 4</div>
                 <div class="question">¿Qué procesos siguen siendo manuales?</div>
@@ -584,7 +595,7 @@
             <!-- Step 4: Horas y dolor -->
             <div class="form-step" data-step="3">
                 <div class="step-number">Paso 4 de 4</div>
-                <div class="question">¿Cuánto tiempo pierden en tareas repetitivas?</div>
+                <div class="question">¿Cuánto tiempo le dedicas a tus tareas repetitivas?</div>
                 <div class="input-group">
                     <label>Horas semanales en tareas manuales/repetitivas</label>
                     <div class="option-cards">
@@ -660,6 +671,26 @@
             });
         }
         
+        function handleGiroChange() {
+            const giroSelect = document.getElementById('giro');
+            const otroContainer = document.getElementById('giroOtroContainer');
+            if (giroSelect.value === 'Otro') {
+                otroContainer.classList.add('visible');
+                document.getElementById('giroOtro').focus();
+            } else {
+                otroContainer.classList.remove('visible');
+                document.getElementById('giroOtro').value = '';
+            }
+        }
+        
+        function getGiro() {
+            const giroSelect = document.getElementById('giro').value;
+            if (giroSelect === 'Otro') {
+                return document.getElementById('giroOtro').value.trim() || 'Otro';
+            }
+            return giroSelect;
+        }
+        
         function nextStep() {
             if (!validateStep(currentStep)) return;
             
@@ -695,8 +726,12 @@
                 }
             }
             if (step === 1) {
-                const giro = document.getElementById('giro').value;
-                if (!giro || !formData.empleados) {
+                const giroSelect = document.getElementById('giro').value;
+                if (!giroSelect || !formData.empleados) {
+                    shakeForm();
+                    return false;
+                }
+                if (giroSelect === 'Otro' && !document.getElementById('giroOtro').value.trim()) {
                     shakeForm();
                     return false;
                 }
@@ -741,8 +776,9 @@
             const payload = {
                 nombre: document.getElementById('nombre').value.trim(),
                 email: document.getElementById('email').value.trim(),
+                telefono: document.getElementById('telefono').value.trim(),
                 empresa: document.getElementById('empresa').value.trim(),
-                giro: document.getElementById('giro').value,
+                giro: getGiro(),
                 empleados: formData.empleados,
                 procesos_manuales: formData.procesos.join(', '),
                 horas_perdidas: formData.horas,
